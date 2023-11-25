@@ -1,4 +1,4 @@
-package fr.hubone.bbgrvoicepicking.ui.theme
+package com.example.testmobileca.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -34,7 +34,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun BBGRVoicePickingTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun MobileCaTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
