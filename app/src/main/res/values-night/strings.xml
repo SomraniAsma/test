@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TestMobileCa</string>
-    <string name="nav_bar_accounts">MesComptes</string>
     <string name="nav_bar_simulation">Simulation</string>
     <string name="nav_bar_free">à vous de jouer</string>
 </resources>
