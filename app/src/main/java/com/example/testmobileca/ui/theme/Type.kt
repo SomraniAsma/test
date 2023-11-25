@@ -1,4 +1,4 @@
-package fr.hubone.bbgrvoicepicking.ui.theme
+package com.example.testmobileca.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
