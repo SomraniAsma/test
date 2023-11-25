@@ -25,6 +25,7 @@ abstract class BaseActivity : ComponentActivity() {
         }
     }
 
+
     /**
      * Observe [BaseViewModel.navigation] and navigate.
      *
@@ -32,15 +33,9 @@ abstract class BaseActivity : ComponentActivity() {
      */
     @InternalCoroutinesApi
     private fun registerNavigation(viewModel: BaseViewModel) {
-        // Start a coroutine in the lifecycle scope
         lifecycleScope.launch {
-            // repeatOnLifecycle launches the block in a new coroutine every time the
-            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Trigger the flow and start listening for values.
-                // Note that this happens when lifecycle is STARTED and stops
-                // collecting when the lifecycle is STOPPED
-                viewModel.navigation.collect{
+          repeatOnLifecycle(Lifecycle.State.STARTED) {
+             viewModel.navigation.collect{
                     navigate(it)
                 }
             }

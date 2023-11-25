@@ -4,6 +4,8 @@ sealed class Navigation {
 
     object Back : Navigation()
 
-    object MenuNavigation : Navigation()
-}
+
+    object AccountListNavigation : Navigation()
+
+    object OperationListNavigation : Navigation()}
 
