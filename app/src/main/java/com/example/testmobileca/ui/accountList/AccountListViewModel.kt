@@ -11,4 +11,13 @@ import javax.inject.Inject
 class AccountListViewModel @Inject constructor(
     application: Application,
     schedulerProvider: SchedulerProvider,
-) : BaseViewModel(application, schedulerProvider) {}
+) : BaseViewModel(application, schedulerProvider) {
+
+
+
+
+    init {}
+
+
+
+}
