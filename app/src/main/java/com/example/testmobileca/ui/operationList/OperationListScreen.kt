@@ -189,10 +189,8 @@ fun Body(viewModel: OperationListViewModel) {
                         //TODO add list treatment here
                     }
                 }
-
             }
 
         }
-
     }
 }

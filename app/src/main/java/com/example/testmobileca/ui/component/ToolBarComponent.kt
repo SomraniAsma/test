@@ -20,8 +20,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.testmobileca.R
 import com.example.testmobileca.global.listener.ToolBarListener
 import com.example.testmobileca.ui.theme.black
 import com.example.testmobileca.ui.theme.selectedNavItem
@@ -72,7 +74,7 @@ fun ToolbarComponent(
             }
 
             Text(
-                text = "Mes comptes",
+                text = stringResource(R.string.operation_list_nav_back_title),
                 color = selectedNavItem,
                 fontSize = 12.sp
 
