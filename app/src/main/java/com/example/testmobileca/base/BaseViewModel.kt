@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testmobileca.global.listener.SchedulerProvider
 import com.example.testmobileca.global.utils.Navigation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -13,10 +15,11 @@ import kotlinx.coroutines.launch
 
 abstract class BaseViewModel(
     application: Application,
-    schedulerProvider: SchedulerProvider,
+    protected val schedulerProvider: SchedulerProvider,
 ) : AndroidViewModel(application) {
 
-    //for resource access only
+    private val job = SupervisorJob()
+    protected val viewModelScope = CoroutineScope(job + schedulerProvider.dispatchersUI())
     @SuppressLint("StaticFieldLeak")
     protected val applicationContext = application.applicationContext!!
 
