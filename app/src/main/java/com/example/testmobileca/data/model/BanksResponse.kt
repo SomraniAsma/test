@@ -11,5 +11,4 @@ data class BanksResponse (
     @Json(name = "name") var name: String,
     @Json(name = "isCA") var isCA: String,
     @Json(name = "accounts") var accounts: List<Account>
-
     ) : Parcelable

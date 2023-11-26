@@ -4,4 +4,6 @@
     <string name="nav_bar_free">à vous de jouer</string>
     <string name="account_list_screen_title">Mes Comptes</string>
     <string name="operation_list_nav_back_title">Mes comptes</string>
+    <string name="account_list_screen_ca_category">Credit Agricole</string>
+    <string name="account_list_screen_other_category">Autres Banque</string>
 </resources>

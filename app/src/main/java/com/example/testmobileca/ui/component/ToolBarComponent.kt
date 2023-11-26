@@ -68,7 +68,6 @@ fun ToolbarComponent(
                         modifier = Modifier
                             .size(20.dp)
                             .padding(start = 1.dp, top = 1.dp, bottom = 1.dp)
-
                     )
                 }
             }
