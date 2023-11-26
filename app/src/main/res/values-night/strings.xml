@@ -2,4 +2,5 @@
 <resources>
     <string name="nav_bar_simulation">Simulation</string>
     <string name="nav_bar_free">à vous de jouer</string>
+    <string name="account_list_screen_title">Mes Comptes</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.testmobileca.global.enumeration.NavBottomItem
 import androidx.compose.ui.unit.sp
+import com.example.testmobileca.ui.theme.grayBackground
 import com.example.testmobileca.ui.theme.grayStar
 import com.example.testmobileca.ui.theme.grayText
 import com.example.testmobileca.ui.theme.selectedNavItem
@@ -24,7 +25,7 @@ fun BottomNavigationBar(
         val iconTint= if(isSelected ) selectedNavItem else grayStar
     BottomNavigation(
         modifier = Modifier.height(50.dp),
-        backgroundColor = MaterialTheme.colors.background
+        backgroundColor = grayBackground
     )
     {
         bottomNavItems.forEach { navItem ->
