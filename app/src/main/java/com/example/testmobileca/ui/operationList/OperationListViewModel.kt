@@ -3,6 +3,7 @@ package com.example.testmobileca.ui.operationList
 import android.app.Application
 import com.example.testmobileca.base.BaseViewModel
 import com.example.testmobileca.global.listener.SchedulerProvider
+import com.example.testmobileca.global.listener.ToolBarListener
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -11,4 +12,4 @@ import javax.inject.Inject
 class OperationListViewModel @Inject constructor(
     application: Application,
     schedulerProvider: SchedulerProvider,
-) : BaseViewModel(application, schedulerProvider) {}
+) : BaseViewModel(application, schedulerProvider) , ToolBarListener{}

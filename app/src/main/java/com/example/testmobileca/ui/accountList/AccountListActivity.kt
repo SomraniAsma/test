@@ -1,10 +1,13 @@
 package com.example.testmobileca.ui.accountList
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.example.testmobileca.base.BaseActivity
 import com.example.testmobileca.global.utils.Navigation
+import com.example.testmobileca.ui.operationList.OperationListActivity
+import com.example.testmobileca.ui.operationList.OperationListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -32,10 +35,18 @@ class AccountListActivity : BaseActivity() {
                 finish()
             }
             else -> {
-                //..
+                operationListNavigation()
             }
         }
     }
+
+    private fun operationListNavigation() {
+        Intent(this, OperationListActivity::class.java).run {
+            startActivity(this)
+        }
+
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
