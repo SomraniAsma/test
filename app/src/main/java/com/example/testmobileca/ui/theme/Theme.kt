@@ -1,5 +1,6 @@
 package com.example.testmobileca.ui.theme
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -12,47 +13,34 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
-private val DarkColorPalette = darkColors(
-        primary = Purple200,
-        primaryVariant = Purple700,
-        secondary = Teal200
-)
 
+@SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-        primary = Purple500,
-        primaryVariant = Purple700,
-        secondary = Teal200
+    primary = white,
+    primaryVariant = grayText,
+    secondary = paleWhite,
+    secondaryVariant= white,
+    onPrimary = onPrimaryColorBlack,
+    onBackground= shadowedGray,
+    surface= red
 
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+
 )
 
 @Composable
-fun MobileCaTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
+fun MobileCaTheme( content: @Composable () -> Unit) {
     MaterialTheme(
-            colors = colors,
+            colors = LightColorPalette,
             typography = Typography,
             shapes = Shapes,
             content = content
     )
 }
 
-fun toolbarText(color: Color, textAlign: TextAlign) = TextStyle(
+fun navBarText(color: Color, textAlign: TextAlign) = TextStyle(
     fontFamily = FontFamily.Default,
     fontWeight = FontWeight.Normal,
-    fontSize = 18.sp,
+    fontSize = 12.sp,
     textAlign = textAlign,
     color = color
 )
