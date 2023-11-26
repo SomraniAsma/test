@@ -3,6 +3,7 @@ package com.example.testmobileca.global.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import kotlin.coroutines.cancellation.CancellationException
 
 
 fun Context?.isInternetAvailable(): Boolean {
@@ -18,5 +19,32 @@ fun Context?.isInternetAvailable(): Boolean {
     }
 
     return false
+}
+
+
+
+/**
+ * used for suspend tryCatch
+ * @param tryBlock  try block to execute
+ * @param catchBlock  catch block to execute
+ * @param handleCancellationExceptionManually cancellation exception will manually handled
+ *
+ */
+suspend fun tryCatch(
+    tryBlock: suspend () -> Unit,
+    catchBlock: suspend (Throwable) -> Unit,
+    handleCancellationExceptionManually: Boolean = false
+) {
+    try {
+        tryBlock()
+    } catch (e: Throwable) {
+        if (e !is CancellationException ||
+            handleCancellationExceptionManually
+        ) {
+            catchBlock(e)
+        } else {
+            throw e
+        }
+    }
 }
 

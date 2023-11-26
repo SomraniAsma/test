@@ -1,6 +1,8 @@
 package com.example.testmobileca.retrofit
 
+import android.content.ContentValues
 import android.content.Context
+import com.example.testmobileca.global.utils.Logger
 import com.example.testmobileca.global.utils.isInternetAvailable
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
@@ -15,18 +17,13 @@ class EndPointInterceptor(
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         var request: Request = chain.request()
-        val url = request.url.toString()
-        if (url.contains("")) {
             if (context.isInternetAvailable()) {
                 request = request.newBuilder()
                     .method(request.method, request.body)
-                   // .addHeader("Authorization", "Bearer " + dataStoreManager.getSyncData("userToken",""))
                     .build()
             } else {
                 throw NetworkNotFoundException()
             }
-        }
-
         return chain.proceed(request)
     }
 

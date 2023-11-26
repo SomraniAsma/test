@@ -24,7 +24,7 @@ android {
     buildTypes {
         debug {
             debuggable true
-            buildConfigField "String", "BASE_URL", "\"https://cdf-test-mobile-default-rtdb.europe-west1.firebasedatabase.app/banks.json/\""
+            buildConfigField "String", "BASE_URL", "\"https://run.mocky.io/v3/f397b1cc-e5b7-4f86-a7d5-194ecfc57c25/\""
               }
         release {
             minifyEnabled false
