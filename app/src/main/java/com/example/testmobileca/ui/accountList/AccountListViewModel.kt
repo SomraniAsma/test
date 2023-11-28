@@ -31,7 +31,8 @@ class AccountListViewModel @Inject constructor(
     private val _accountList: MutableStateFlow<List<BanksResponse>> = MutableStateFlow(emptyList())
     val accountList: StateFlow<List<BanksResponse>> get() = _accountList
 
-    private val _categorizedList: MutableStateFlow<List<BankCategory>> = MutableStateFlow(emptyList())
+    private val _categorizedList: MutableStateFlow<List<BankCategory>> =
+        MutableStateFlow(emptyList())
     val categorizedList: StateFlow<List<BankCategory>> get() = _categorizedList
 
 
@@ -44,7 +45,8 @@ class AccountListViewModel @Inject constructor(
 
 
     /**
-     *
+     * navigate to detail interface
+     * @param item  account object selected
      */
     override fun onItemClicked(item: Account) {
         navigate(Navigation.OperationListNavigation(item))
@@ -60,16 +62,15 @@ class AccountListViewModel @Inject constructor(
                 val response = withContext(schedulerProvider.dispatchersIO()) {
                     accountRepository.getAllAccounts()
                 }
-                //_accountList.value = response
                 var index = 0
-                _categorizedList.value = response.map { bank ->
+                response.map { bank ->
                     BankCategory(
                         index = index++,
                         category = bank.isCA,
                         bankName = bank.name,
                         accounts = bank.accounts
                     )
-                }
+                }.also { _categorizedList.value = it }
                 Logger.d(ContentValues.TAG, response.toString())
             }, {
                 Logger.e(ContentValues.TAG, it.stackTraceToString())

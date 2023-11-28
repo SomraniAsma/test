@@ -28,7 +28,6 @@ abstract class BaseActivity : ComponentActivity() {
 
     /**
      * Observe [BaseViewModel.navigation] and navigate.
-     *
      * @param viewModel [BaseViewModel]
      */
     @InternalCoroutinesApi
@@ -50,10 +49,10 @@ abstract class BaseActivity : ComponentActivity() {
     /**
      * startActivity to class
      * @param kClass activity to navigate to
-     * @param shouldFinish should finish current activity
+     * @param mustFinish should finish current activity
      */
-    fun navigateToActivity(kClass: KClass<out Activity>, shouldFinish: Boolean = false) {
+    fun navigateToActivity(kClass: KClass<out Activity>, mustFinish: Boolean = false) {
         startActivity(Intent(this, kClass.java))
-        if (shouldFinish) finish()
+        if (mustFinish) finish()
     }
 }

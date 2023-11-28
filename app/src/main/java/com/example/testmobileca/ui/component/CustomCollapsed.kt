@@ -23,10 +23,18 @@ import androidx.compose.ui.unit.sp
 import com.example.testmobileca.R
 import com.example.testmobileca.data.model.Account
 import com.example.testmobileca.data.model.BankCategory
-import com.example.testmobileca.data.model.Operation
 import com.example.testmobileca.ui.theme.grayHeader
 import com.example.testmobileca.ui.theme.grayText
 import com.example.testmobileca.ui.theme.shadowedGray
+
+
+/**
+ * Collapsed nested lists component
+ * @param sections  list of data
+ * @param modifier  wanted date format
+ * @param onAccountClickedActionBlock on collapsed item click
+ *
+ */
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -39,14 +47,20 @@ fun CollapsableLazyColumn(
     val collapsedState = remember(sections) { sections.map { true }.toMutableStateList() }
 
         LazyColumn(modifier.fillMaxSize()){
+            /**
+             * group data by category
+             */
             val mainGroup = sections.groupBy { it.category }
             mainGroup.forEach { (category, groupedData) ->
                 stickyHeader {
                     CategoryHeader(text = category)
                 }
-                groupedData.forEach { dataItem ->
+                /**
+                 * sorting list
+                 */
+                groupedData.sortedBy {  it.bankName }
+                    .forEach { dataItem ->
                     val collapsed = collapsedState[dataItem.index]
-
                     item(key = "header_${dataItem.index} ${category}") {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -88,19 +102,10 @@ fun CollapsableLazyColumn(
                         Divider()
                     }
                     if (!collapsed) {
-                        items(dataItem.accounts) { row ->
-                           /* Row {
-                                Spacer(modifier = Modifier.size(MaterialIconDimension.dp))
-                                Text(
-                                    row.label,
-                                    modifier = Modifier
-                                        .padding(vertical = 10.dp)
-                                )
-
-
-                                onValueChangeActionBlock!!.invoke(it, type)
-
-                            }*/
+                        /**
+                         * sorting list
+                         */
+                        items(dataItem.accounts.sortedBy{  it.label }) { row ->
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(1.dp, Alignment.Start),

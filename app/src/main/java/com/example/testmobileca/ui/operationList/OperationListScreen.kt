@@ -1,14 +1,10 @@
 package com.example.testmobileca.ui.operationList
 
-import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,20 +26,14 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.testmobileca.R
 import com.example.testmobileca.base.BaseScreen
-import com.example.testmobileca.data.model.BankCategory
-import com.example.testmobileca.data.model.Operation
 import com.example.testmobileca.global.enumeration.NavBottomItem
-import com.example.testmobileca.global.listener.ToolBarListener
 import com.example.testmobileca.global.utils.dateFormat
-import com.example.testmobileca.ui.accountList.AccountListViewModel
 import com.example.testmobileca.ui.component.BottomNavigationBar
 import com.example.testmobileca.ui.component.ListItem
 import com.example.testmobileca.ui.component.ToolbarComponent
 import com.example.testmobileca.ui.theme.black
-import com.example.testmobileca.ui.theme.grayBackground
 import com.example.testmobileca.ui.theme.shadowedGray
 
 @Composable
@@ -93,7 +82,7 @@ fun OperationListScreen(viewModel: OperationListViewModel = hiltViewModel()) {
 @Composable
 fun TopBar(viewModel: OperationListViewModel){
     ToolbarComponent(
-        endIcon = Icons.Filled.ArrowBackIos,
+        startIcon = Icons.Filled.ArrowBackIos,
         toolBarListener = viewModel,
         menuType = "menuType"
     )
@@ -189,7 +178,7 @@ fun Body(viewModel: OperationListViewModel) {
                                 collapsable = false,
                                 text = it.title,
                                 extraText = it.amount,
-                                subText = dateFormat(it.date.toLong()),
+                                subText = dateFormat(it.date.toLong(),"dd/MM/yy"),
                                 collapsed = false,
                                 onClickActionBlock = {//TODO add treatment
                                      }

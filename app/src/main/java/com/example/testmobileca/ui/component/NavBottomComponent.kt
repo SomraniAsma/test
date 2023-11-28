@@ -13,7 +13,10 @@ import com.example.testmobileca.global.enumeration.NavBottomItem
 import androidx.compose.ui.unit.sp
 import com.example.testmobileca.ui.theme.*
 
-
+/**
+ * Bottom navigation bar
+ * @param bottomNavItems  list of nav items
+ */
 @Composable
 fun BottomNavigationBar(
     bottomNavItems: List<NavBottomItem>,

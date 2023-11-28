@@ -17,7 +17,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.testmobileca.ui.theme.grayStar
 import com.example.testmobileca.ui.theme.shadowedGray
-
+/**
+ * listItem component
+ * @param collapsable  boolean
+ * @param text  String
+ * @param subText  String
+ * @param extraText  string
+ * @param collapsed  Boolean
+ * @param onClickActionBlock
+ */
 @Composable
 fun ListItem(
     collapsable: Boolean,
@@ -26,7 +34,6 @@ fun ListItem(
     extraText: String,
     collapsed: Boolean,
     onClickActionBlock: ((Boolean) -> Unit)? = null,
-
     ) {
 
 
