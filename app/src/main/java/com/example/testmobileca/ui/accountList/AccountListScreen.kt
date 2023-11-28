@@ -17,10 +17,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.testmobileca.R
 import com.example.testmobileca.base.BaseScreen
 import com.example.testmobileca.data.model.BankCategory
+import com.example.testmobileca.data.model.BanksResponse
 import com.example.testmobileca.global.enumeration.NavBottomItem
 import com.example.testmobileca.ui.component.BottomNavigationBar
 import com.example.testmobileca.ui.component.CollapsableLazyColumn
 import com.example.testmobileca.ui.theme.*
+import java.util.Locale.Category
 
 @Composable
 @Preview(device = "id:Nexus 5X")
@@ -39,17 +41,18 @@ fun AccountListScreen(viewModel: AccountListViewModel = hiltViewModel()) {
         NavBottomItem(
             label = stringResource(R.string.nav_bar_accounts),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = true,
+
         ),
         NavBottomItem(
             label = stringResource(R.string.nav_bar_simulation),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = false,
         ),
         NavBottomItem(
             label = stringResource(R.string.nav_bar_free),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = false,
         )
     )
 
@@ -66,7 +69,7 @@ fun AccountListScreen(viewModel: AccountListViewModel = hiltViewModel()) {
 
 @Composable
 fun Body(viewModel: AccountListViewModel) {
-    val dataList by viewModel.categorizedList.collectAsState(emptyList<BankCategory>())
+    val dataList by viewModel.categorizedList.collectAsState(emptyList())
 
         Column( horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
@@ -99,7 +102,10 @@ fun Body(viewModel: AccountListViewModel) {
             .padding(bottom = 74.dp)
             .weight(3f)
         ) {
-            CollapsableLazyColumn(dataList)
+            CollapsableLazyColumn(
+                sections= dataList,
+                onAccountClickedActionBlock = {viewModel.onItemClicked(it)}
+            )
         }
    }
 }

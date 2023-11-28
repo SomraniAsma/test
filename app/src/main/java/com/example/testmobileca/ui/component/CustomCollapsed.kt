@@ -8,8 +8,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
@@ -22,7 +21,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testmobileca.R
+import com.example.testmobileca.data.model.Account
 import com.example.testmobileca.data.model.BankCategory
+import com.example.testmobileca.data.model.Operation
 import com.example.testmobileca.ui.theme.grayHeader
 import com.example.testmobileca.ui.theme.grayText
 import com.example.testmobileca.ui.theme.shadowedGray
@@ -31,8 +32,10 @@ import com.example.testmobileca.ui.theme.shadowedGray
 @Composable
 fun CollapsableLazyColumn(
     sections: List<BankCategory>,
-    modifier: Modifier = Modifier
-) {
+    modifier: Modifier = Modifier,
+    onAccountClickedActionBlock: ((Account)-> Unit)? = null,
+
+    ) {
     val collapsedState = remember(sections) { sections.map { true }.toMutableStateList() }
 
         LazyColumn(modifier.fillMaxSize()){
@@ -77,7 +80,7 @@ fun CollapsableLazyColumn(
                                 },
                                 contentDescription = "",
                                 modifier=Modifier.padding(end=10.dp)
-                                    .size(20.dp)
+                                    .size(28.dp)
                                     .weight(0.5f),
                                 tint = Color.LightGray,
                             )
@@ -86,14 +89,58 @@ fun CollapsableLazyColumn(
                     }
                     if (!collapsed) {
                         items(dataItem.accounts) { row ->
-                            Row {
+                           /* Row {
                                 Spacer(modifier = Modifier.size(MaterialIconDimension.dp))
                                 Text(
                                     row.label,
                                     modifier = Modifier
                                         .padding(vertical = 10.dp)
                                 )
+
+
+                                onValueChangeActionBlock!!.invoke(it, type)
+
+                            }*/
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(1.dp, Alignment.Start),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+                                    .clickable {
+                                       // collapsedState[dataItem.index] = !collapsed
+                                        onAccountClickedActionBlock!!.invoke(row)
+
+                                    }
+                            ) {
+                                Text(
+                                    text = row.label,
+                                    textAlign = TextAlign.Start,
+                                    // = FontWeight.Bold,
+                                    modifier=Modifier.weight(2f),
+                                )
+                                Text(
+                                    text = "12348.65 €",
+                                    textAlign = TextAlign.Start,
+                                   // fontWeight = FontWeight.Bold,
+                                    color = shadowedGray,
+                                    modifier=Modifier.weight(0.75f),
+                                )
+                                Icon(
+                                    Icons.Filled.run {
+                                       // if (collapsed)
+                                           // ArrowBackIos
+                                       // else
+                                            ArrowForwardIos
+                                    },
+                                    contentDescription = "",
+                                    modifier=Modifier.padding(end=10.dp)
+                                        .size(15.dp)
+                                        .weight(0.5f),
+                                    tint = Color.LightGray,
+                                )
                             }
+
                             Divider()
                         }
                     }

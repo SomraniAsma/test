@@ -1,11 +1,13 @@
 package com.example.testmobileca.ui.operationList
 
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
@@ -14,6 +16,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -30,13 +34,18 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.testmobileca.R
 import com.example.testmobileca.base.BaseScreen
+import com.example.testmobileca.data.model.BankCategory
+import com.example.testmobileca.data.model.Operation
 import com.example.testmobileca.global.enumeration.NavBottomItem
 import com.example.testmobileca.global.listener.ToolBarListener
+import com.example.testmobileca.global.utils.dateFormat
 import com.example.testmobileca.ui.accountList.AccountListViewModel
 import com.example.testmobileca.ui.component.BottomNavigationBar
+import com.example.testmobileca.ui.component.ListItem
 import com.example.testmobileca.ui.component.ToolbarComponent
 import com.example.testmobileca.ui.theme.black
 import com.example.testmobileca.ui.theme.grayBackground
+import com.example.testmobileca.ui.theme.shadowedGray
 
 @Composable
 @Preview(device = "id:Nexus 5X")
@@ -55,17 +64,17 @@ fun OperationListScreen(viewModel: OperationListViewModel = hiltViewModel()) {
         NavBottomItem(
             label = stringResource(R.string.nav_bar_accounts),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = false,
         ),
         NavBottomItem(
             label = stringResource(R.string.nav_bar_simulation),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = true,
         ),
         NavBottomItem(
             label = stringResource(R.string.nav_bar_free),
             icon = Icons.Filled.StarRate,
-            route = "",
+            selected = false,
         )
     )
 
@@ -76,7 +85,7 @@ fun OperationListScreen(viewModel: OperationListViewModel = hiltViewModel()) {
         fab = {},
         bottomBar = { BottomNavigationBar(bottomNavItems) }
     ) {
-        BodyContent(viewModel)
+        Body(viewModel)
 
     }
 }
@@ -117,16 +126,21 @@ fun BodyContent(viewModel: OperationListViewModel) {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Body(viewModel: OperationListViewModel) {
+
+
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize(1f)
 
     ) {
-        var (header, list, footer) = createRefs()
-        val headerRowHorizontalGuideline = createGuidelineFromTop(0.25f)
+        var (header, list) = createRefs()
+        val headerRowHorizontalGuideline = createGuidelineFromTop(0.22f)
         val paddingStartVerticalGuideline = createGuidelineFromStart(0.04f)
         val paddingEndVerticalGuideline = createGuidelineFromStart(0.96f)
         val paddingbottomGuideline = createGuidelineFromBottom(0.1f)
+        val account by viewModel.account.collectAsState()
+        val operationList by viewModel.operationList.collectAsState()
+
 
         Box(modifier = Modifier
             .constrainAs(header)
@@ -137,60 +151,53 @@ fun Body(viewModel: OperationListViewModel) {
                 width = Dimension.matchParent
                 height = Dimension.fillToConstraints
             }
-            .background(grayBackground)
+            .background(shadowedGray)
         ) {
             Text(
-                text = "value",
-                fontSize = 23.sp,
+                text = "${account.balance.toString()} €" ,
+                fontSize = 28.sp,
+                fontWeight =  FontWeight.Bold,
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(start = 0.dp, top = 25.dp)
+                    .padding(start = 0.dp, top = 20.dp)
             )
             Text(
-                text = "Account.title",
-                fontSize = 18.sp,
+                text = account.label,
+                fontSize = 20.sp,
+                fontWeight =  FontWeight.SemiBold,
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(start = 0.dp, bottom = 10.dp)
-
             )
         }
 
-
-        Column(
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.spacedBy(28.dp, Alignment.CenterVertically),
-            modifier = Modifier.constrainAs(list) {
+        Box(
+           modifier = Modifier.constrainAs(list) {
                 linkTo(end = paddingEndVerticalGuideline, start = paddingStartVerticalGuideline)
                 top.linkTo(header.bottom)
                 width = Dimension.fillToConstraints
-            }) {
-            Spacer(modifier = Modifier.padding(top = 5.dp))
-            Column(
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .animateContentSize()
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(13.5.dp))
-                        .padding(end = 2.dp, start = 2.dp, bottom = 2.dp)
-                        .background(color = Color.Gray)
-                        .border(1.dp, (Color.Yellow), shape = RoundedCornerShape(6.dp))
-                )
-                {
-                    LazyColumn {
-                        //TODO add list treatment here
+            }
+                    .padding(bottom = 74.dp)
+        ) {
+                    LazyColumn{
+                        items(operationList) {
+                            ListItem(
+                                collapsable = false,
+                                text = it.title,
+                                extraText = it.amount,
+                                subText = dateFormat(it.date.toLong()),
+                                collapsed = false,
+                                onClickActionBlock = {//TODO add treatment
+                                     }
+                            )
+                }
                     }
                 }
             }
 
         }
-    }
-}
+

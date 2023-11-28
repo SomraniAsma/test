@@ -17,29 +17,24 @@ import com.example.testmobileca.ui.theme.*
 @Composable
 fun BottomNavigationBar(
     bottomNavItems: List<NavBottomItem>,
-) {
-    var isSelected by remember { mutableStateOf(false) }
-    val textColor= if(isSelected) selectedNavItem else grayText
-        val iconTint= if(isSelected ) selectedNavItem else grayStar
+    ) {
+
     BottomNavigation(
         modifier = Modifier.height(72.dp),
         backgroundColor = shadowedGray
     )
     {
         bottomNavItems.forEach { navItem ->
-
             BottomNavigationItem(
-                selected = true,
+                selected = navItem.selected,
                 onClick = {
                     //TODO add treatment here
                 },
-
                 icon = {
                     navItem.icon?.let {
                         Icon(
                             imageVector = navItem.icon,
                             contentDescription = navItem.label,
-                            tint= iconTint,
                             modifier = Modifier
                                 .padding(top = 1.dp, start = 4.dp, end = 4.dp)
                                 .size(27.dp)
@@ -52,13 +47,13 @@ fun BottomNavigationBar(
                         textAlign = TextAlign.Center,
                         fontSize = 12.sp,
                         maxLines = 1,
-                        color = textColor,
-
                     )
                     Spacer(modifier = Modifier.padding(10.dp))
 
                 },
-                alwaysShowLabel = false
+                selectedContentColor = selectedNavItem,
+                unselectedContentColor = grayStar,
+                alwaysShowLabel = true
             )
         }
     }
