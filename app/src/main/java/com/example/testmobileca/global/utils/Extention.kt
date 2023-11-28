@@ -3,6 +3,11 @@ package com.example.testmobileca.global.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.coroutines.cancellation.CancellationException
 
 
@@ -21,6 +26,11 @@ fun Context?.isInternetAvailable(): Boolean {
     return false
 }
 
+fun dateFormat(unixTimestamp: Long): String {
+    val formatter = DateTimeFormatter.ofPattern("dd/MM/yy", Locale.getDefault())
+    val dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(unixTimestamp), ZoneId.systemDefault())
+    return dateTime.format(formatter)
+}
 
 
 /**

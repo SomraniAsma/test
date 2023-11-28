@@ -21,12 +21,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testmobileca.R
 import com.example.testmobileca.global.listener.ToolBarListener
 import com.example.testmobileca.ui.theme.black
+import com.example.testmobileca.ui.theme.grayBackground
 import com.example.testmobileca.ui.theme.selectedNavItem
+import com.example.testmobileca.ui.theme.shadowedGray
 
 
 @ExperimentalAnimationApi
@@ -41,8 +44,8 @@ fun ToolbarComponent(
         verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
         modifier = Modifier
             .fillMaxWidth()
-            .height(30.dp)
-            .background(Color.White)
+            .wrapContentHeight()
+            .background(shadowedGray)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -58,7 +61,7 @@ fun ToolbarComponent(
                     .wrapContentWidth()
                     .background(Color.Transparent)
                     .alpha(1f),
-                onClick = { toolBarListener.onBackClicked(menuType) }
+                onClick = { toolBarListener.onBackClicked() }
             ) {
                 endIcon?.let {
                     Icon(
@@ -66,9 +69,8 @@ fun ToolbarComponent(
                         contentDescription = "",
                         tint = selectedNavItem,
                         modifier = Modifier
-                            .size(20.dp)
+                            .size(22.dp)
                             .padding(start = 1.dp, top = 1.dp, bottom = 1.dp)
-
                     )
                 }
             }
@@ -76,7 +78,8 @@ fun ToolbarComponent(
             Text(
                 text = stringResource(R.string.operation_list_nav_back_title),
                 color = selectedNavItem,
-                fontSize = 12.sp
+                fontWeight = FontWeight.Bold,
+                fontSize = 15.sp
 
             )
         }
