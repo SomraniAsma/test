@@ -1,8 +1,7 @@
 package com.example.testmobileca.retrofit
 
-import android.content.ContentValues
+import android.annotation.SuppressLint
 import android.content.Context
-import com.example.testmobileca.global.utils.Logger
 import com.example.testmobileca.global.utils.isInternetAvailable
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
@@ -11,6 +10,7 @@ import okhttp3.Response
 import java.io.IOException
 
 
+@SuppressLint("SuspiciousIndentation")
 class EndPointInterceptor(
     @param:ApplicationContext private val context: Context
 ) : Interceptor {

@@ -20,6 +20,7 @@ abstract class BaseViewModel(
 
     private val job = SupervisorJob()
     protected val viewModelScope = CoroutineScope(job + schedulerProvider.dispatchersUI())
+
     @SuppressLint("StaticFieldLeak")
     protected val applicationContext = application.applicationContext!!
 
@@ -31,7 +32,7 @@ abstract class BaseViewModel(
 
     /**
      * Used for navigation events.
-     * @param navigationTo The new destination.
+     * @param navigationTo navigate The new destination.
      */
     fun navigate(navigationTo: Navigation) {
         viewModelScope.launch {

@@ -9,9 +9,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.example.testmobileca.ui.theme.MobileCaTheme
 import com.google.accompanist.insets.ProvideWindowInsets
+
+
 /**
- * The Home screen.
+ * base screen
+ * @param viewModel viewModel related to the specific screen
+ * @param topBar topBar component if needed
+ * @param fab fab button if needed
+ * @param bottomBar navBar if needed
+ * @param body body content
+ *
  */
+
 @ExperimentalMaterialApi
 @Composable
 fun <T> BaseScreen(

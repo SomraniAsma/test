@@ -5,6 +5,11 @@ import com.example.testmobileca.data.model.BanksResponse
 
 interface AccountRepository {
 
+
+    /**
+     * get datalist from server
+     * @return List<BanksResponse>
+     */
     @WorkerThread
     suspend fun getAllAccounts(): List<BanksResponse>
 

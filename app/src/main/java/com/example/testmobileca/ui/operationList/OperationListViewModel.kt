@@ -1,11 +1,9 @@
 package com.example.testmobileca.ui.operationList
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import com.example.testmobileca.base.BaseViewModel
 import com.example.testmobileca.data.model.Account
-import com.example.testmobileca.data.model.BanksResponse
 import com.example.testmobileca.data.model.Operation
 import com.example.testmobileca.global.listener.ClickListener
 import com.example.testmobileca.global.listener.SchedulerProvider

@@ -71,7 +71,8 @@ fun AccountListScreen(viewModel: AccountListViewModel = hiltViewModel()) {
 fun Body(viewModel: AccountListViewModel) {
     val dataList by viewModel.categorizedList.collectAsState(emptyList())
 
-        Column( horizontalAlignment = Alignment.Start,
+        Column(
+            horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
         modifier = Modifier.fillMaxSize()
 

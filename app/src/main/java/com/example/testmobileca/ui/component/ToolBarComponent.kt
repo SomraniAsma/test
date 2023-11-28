@@ -1,43 +1,38 @@
 package com.example.testmobileca.ui.component
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIos
-import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testmobileca.R
 import com.example.testmobileca.global.listener.ToolBarListener
-import com.example.testmobileca.ui.theme.black
-import com.example.testmobileca.ui.theme.grayBackground
 import com.example.testmobileca.ui.theme.selectedNavItem
 import com.example.testmobileca.ui.theme.shadowedGray
 
 
+/**
+ * topBar
+ * @param startIcon Icon
+ * @param toolBarListener  listener for toolbar click
+ */
+
 @ExperimentalAnimationApi
 @Composable
 fun ToolbarComponent(
-    endIcon: ImageVector? ,
+    startIcon: ImageVector?,
     toolBarListener: ToolBarListener,
-    menuType: String,
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
@@ -63,9 +58,9 @@ fun ToolbarComponent(
                     .alpha(1f),
                 onClick = { toolBarListener.onBackClicked() }
             ) {
-                endIcon?.let {
+                startIcon?.let {
                     Icon(
-                        imageVector = endIcon,
+                        imageVector = startIcon,
                         contentDescription = "",
                         tint = selectedNavItem,
                         modifier = Modifier
