@@ -17,6 +17,7 @@
 - SourceTree pour la gestion du versionnage
 - GitHub Projects pour la gestion du product backlog (https://github.com/users/SomraniAsma/projects/5/views/2)
 
+
 ## Notes
 - Je n'ai pas opté pour un nanGraph puisque le projet contient seulement deux interfaces.
 - Je n'ai pas utilisé DataStore pour le stockage des variables puisque ce n'est pas nécessaire dans ce cas.
