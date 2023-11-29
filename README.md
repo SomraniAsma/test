@@ -15,10 +15,10 @@
 - Android Studio (version "Electric Eel")
 - Flux de travail CI/CD de GitHub
 - SourceTree pour la gestion du versionnage
-- GitHub Projects pour la gestion du product backlog
+- GitHub Projects pour la gestion du product backlog (https://github.com/users/SomraniAsma/projects/5/views/2)
 
 ## Notes
-- Je n'ai pas opté pour un nanGraph puisque le projet contient seulement deux interfaces.
+- Je n'ai pas opté pour un "Navigation" component" du jetpack Compose puisque le projet contient seulement deux interfaces.
 - Je n'ai pas utilisé DataStore pour le stockage des variables puisque ce n'est pas nécessaire dans ce cas.
 - J'utilise le swipe pour exécuter le rafraîchissement des données si nécessaire.
 - J'ai essayé d'écrire quelques scénarios de test (c'est ma première expérience avec les tests). J'ai gardé l'historique.
