@@ -14,10 +14,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testmobileca.R
 import com.example.testmobileca.global.listener.ToolBarListener
+import com.example.testmobileca.ui.theme.MobileCaTheme
 import com.example.testmobileca.ui.theme.selectedNavItem
 import com.example.testmobileca.ui.theme.shadowedGray
 
@@ -79,8 +81,11 @@ fun ToolbarComponent(
             )
         }
     }
-
-
-
 }
 
+@Preview(showBackground = true)
+@Composable
+fun TobBarPreview() {
+    MobileCaTheme() {
+
+    }}

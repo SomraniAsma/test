@@ -1,6 +1,5 @@
 package com.example.testmobileca.data.model
 
-import java.util.*
 
 data class BankCategory(
     val index: Int ,

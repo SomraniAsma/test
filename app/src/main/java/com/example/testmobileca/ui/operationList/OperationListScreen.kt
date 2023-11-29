@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
@@ -15,9 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -80,16 +77,14 @@ fun OperationListScreen(viewModel: OperationListViewModel = hiltViewModel()) {
 }
 
 
-
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun TopBar(viewModel: OperationListViewModel){
+fun TopBar(viewModel: OperationListViewModel) {
     ToolbarComponent(
         startIcon = Icons.Filled.ArrowBackIos,
         toolBarListener = viewModel,
     )
 }
-
 
 
 @Composable
@@ -109,61 +104,63 @@ fun Body(viewModel: OperationListViewModel) {
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterVertically),
-            modifier = Modifier.fillMaxSize()
-            .constrainAs(header)
-            {
-                height = Dimension.wrapContent
-                linkTo(end = parent.end, start = parent.start)
-                linkTo(bottom = headerRowHorizontalGuideline, top = parent.top)
-                width = Dimension.matchParent
-                height = Dimension.fillToConstraints
-            }
-            .background(shadowedGray)
+            verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
+            modifier = Modifier
+                .fillMaxSize()
+                .constrainAs(header)
+                {
+                    height = Dimension.wrapContent
+                    linkTo(end = parent.end, start = parent.start)
+                    linkTo(bottom = headerRowHorizontalGuideline, top = parent.top)
+                    width = Dimension.matchParent
+                    height = Dimension.fillToConstraints
+                }
+                .background(shadowedGray)
         ) {
             Text(
-                text = "${account.balance.toString()} €" ,
+                text = "${account.balance} €",
                 fontSize = 28.sp,
-                fontWeight =  FontWeight.Bold,
+                fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
-                    .padding(start = 0.dp, top = 20.dp)
+                    .weight(2f)
             )
             Text(
                 text = account.label,
                 fontSize = 20.sp,
-                fontWeight =  FontWeight.SemiBold,
+                fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
-                    .padding(start = 0.dp, bottom = 10.dp)
+                    .weight(1f)
             )
         }
 
         Box(
-           modifier = Modifier.constrainAs(list) {
-                linkTo(end = paddingEndVerticalGuideline, start = paddingStartVerticalGuideline)
-                top.linkTo(header.bottom)
-                width = Dimension.fillToConstraints
-            }
-                    .padding(bottom = 74.dp)
+            modifier = Modifier
+                .constrainAs(list) {
+                    linkTo(end = paddingEndVerticalGuideline, start = paddingStartVerticalGuideline)
+                    top.linkTo(header.bottom)
+                    width = Dimension.fillToConstraints
+                }
+                .padding(bottom = 74.dp)
         ) {
-                    LazyColumn{
-                        items(operationList) {
-                            ListItem(
-                                collapsable = false,
-                                text = it.title,
-                                extraText = it.amount,
-                                subText = dateFormat(it.date.toLong(),"dd/MM/yy"),
-                                collapsed = false,
-                                onClickActionBlock = {//TODO add treatment
-                                     }
-                            )
-                }
-                    }
+            LazyColumn {
+                items(operationList) {
+                    ListItem(
+                        collapsable = false,
+                        text = it.title,
+                        extraText = it.amount,
+                        subText = dateFormat(it.date.toLong(), "dd/MM/yy"),
+                        collapsed = false,
+                        onClickActionBlock = {//TODO add treatment
+                        }
+                    )
                 }
             }
-
         }
+    }
+
+}
 

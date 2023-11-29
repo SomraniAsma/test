@@ -2,9 +2,8 @@ package com.example.testmobileca.base
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import com.example.testmobileca.data.repository.abs.AccountRepository
 import com.example.testmobileca.global.listener.SchedulerProvider
 import com.example.testmobileca.global.utils.Logger
 import com.example.testmobileca.global.utils.Navigation

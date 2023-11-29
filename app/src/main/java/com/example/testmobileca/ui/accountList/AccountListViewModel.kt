@@ -17,7 +17,6 @@ import com.example.testmobileca.global.utils.tryCatch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -48,6 +47,7 @@ class AccountListViewModel @Inject constructor(
     }
 
 
+
     /**
      * navigate to detail interface
      * @param item  account object selected
@@ -55,6 +55,7 @@ class AccountListViewModel @Inject constructor(
     override fun onItemClicked(item: Account) {
         navigate(Navigation.OperationListNavigation(item))
     }
+
 
 
     /**
@@ -84,6 +85,7 @@ class AccountListViewModel @Inject constructor(
     }
 
 
+
     /**
      * List Treatment
      * @param response list data from server
@@ -100,6 +102,7 @@ class AccountListViewModel @Inject constructor(
         }.also { _categorizedList.value = it }
         Logger.d(ContentValues.TAG, response.toString())
     }
+
 
 
     /**

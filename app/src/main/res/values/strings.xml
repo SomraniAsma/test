@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">TestMobileCa</string>
-    <string name="nav_bar_accounts">MesComptes</string>
+    <string name="app_name">Mobile Ca</string>
+    <string name="nav_bar_accounts">Mes Comptes</string>
     <string name="nav_bar_simulation">Simulation</string>
     <string name="nav_bar_free">à vous de jouer</string>
     <string name="account_list_screen_title">Mes Comptes</string>
     <string name="operation_list_nav_back_title">Mes comptes</string>
     <string name="account_list_screen_ca_category">Credit Agricole</string>
-    <string name="account_list_screen_other_category">Autres Banque</string>
+    <string name="account_list_screen_other_category">Autres Banques</string>
     <string name="no_network_available">Connexion au serveur échouée, veuillez réessayer ultérieurement</string>
 </resources>

@@ -8,7 +8,6 @@ import com.example.testmobileca.base.BaseActivity
 import com.example.testmobileca.global.utils.ExtraKeys
 import com.example.testmobileca.global.utils.Navigation
 import com.example.testmobileca.ui.operationList.OperationListActivity
-import com.example.testmobileca.ui.operationList.OperationListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 

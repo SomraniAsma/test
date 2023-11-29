@@ -22,7 +22,6 @@ private val LightColorPalette = lightColors(
     secondaryVariant= white,
     onPrimary = onPrimaryColorBlack,
     onBackground= shadowedGray,
-    surface= red
 
 
 )

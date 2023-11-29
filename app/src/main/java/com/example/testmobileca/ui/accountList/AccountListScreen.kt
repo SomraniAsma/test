@@ -36,9 +36,7 @@ private fun PreviewAccountScreen() {
 @Composable
 fun AccountListScreen(viewModel: AccountListViewModel = hiltViewModel()) {
 
-/*
-  navBar component
-*/
+/**navBar component*/
     val bottomNavItems = listOf(
         NavBottomItem(
             label = stringResource(R.string.nav_bar_accounts),
@@ -91,11 +89,8 @@ fun Body(viewModel: AccountListViewModel) {
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterVertically),
         modifier = Modifier.fillMaxSize()
-
-
-        ) {/*
-                    ** Header
-                    */
+        ) {
+        /** Header*/
         Box(
             modifier = Modifier
                 .fillMaxWidth()
