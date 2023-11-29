@@ -78,44 +78,22 @@ fun OperationListScreen(viewModel: OperationListViewModel = hiltViewModel()) {
 
     }
 }
+
+
+
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun TopBar(viewModel: OperationListViewModel){
     ToolbarComponent(
         startIcon = Icons.Filled.ArrowBackIos,
         toolBarListener = viewModel,
-        menuType = "menuType"
     )
 }
-@Composable
-fun BodyContent(viewModel: OperationListViewModel) {
-    ConstraintLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Transparent)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize(1f)
-                .background(color = MaterialTheme.colors.background)
 
-        )
-        {
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 50.dp)
-                    .align(Alignment.TopCenter)
-            ) {
-                Body(viewModel)
-            }
-        }
-    }
-}
 
-@OptIn(ExperimentalComposeUiApi::class)
+
 @Composable
 fun Body(viewModel: OperationListViewModel) {
-
 
     ConstraintLayout(
         modifier = Modifier
@@ -126,12 +104,13 @@ fun Body(viewModel: OperationListViewModel) {
         val headerRowHorizontalGuideline = createGuidelineFromTop(0.22f)
         val paddingStartVerticalGuideline = createGuidelineFromStart(0.04f)
         val paddingEndVerticalGuideline = createGuidelineFromStart(0.96f)
-        val paddingbottomGuideline = createGuidelineFromBottom(0.1f)
         val account by viewModel.account.collectAsState()
         val operationList by viewModel.operationList.collectAsState()
 
-
-        Box(modifier = Modifier
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterVertically),
+            modifier = Modifier.fillMaxSize()
             .constrainAs(header)
             {
                 height = Dimension.wrapContent
@@ -149,7 +128,6 @@ fun Body(viewModel: OperationListViewModel) {
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
-                    .align(Alignment.TopCenter)
                     .padding(start = 0.dp, top = 20.dp)
             )
             Text(
@@ -159,7 +137,6 @@ fun Body(viewModel: OperationListViewModel) {
                 maxLines = 1,
                 color = black,
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
                     .padding(start = 0.dp, bottom = 10.dp)
             )
         }

@@ -6,4 +6,5 @@
     <string name="operation_list_nav_back_title">Mes comptes</string>
     <string name="account_list_screen_ca_category">Credit Agricole</string>
     <string name="account_list_screen_other_category">Autres Banque</string>
+    <string name="no_network_available">Connexion au serveur échouée, veuillez réessayer ultérieurement</string>
 </resources>

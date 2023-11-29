@@ -11,9 +11,9 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-private const val CONNECT_TIMEOUT = 60
-private const val WRITE_TIMEOUT = 60
-private const val READ_TIMEOUT = 60
+private const val CONNECT_TIMEOUT = 2
+private const val WRITE_TIMEOUT = 15
+private const val READ_TIMEOUT = 15
 
 @Module
 @InstallIn(SingletonComponent::class)
