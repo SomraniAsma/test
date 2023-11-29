@@ -42,16 +42,12 @@ class OperationListViewModel @Inject constructor(
     }
 
 
-
-
     /**
      * Back navigation on toolbar icon click
      */
     override fun onBackClicked() {
         navigate(Navigation.Back)
     }
-
-
 
 
     /**
