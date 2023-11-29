@@ -15,7 +15,7 @@
 - Android Studio (version "Electric Eel")
 - Flux de travail CI/CD de GitHub
 - SourceTree pour la gestion du versionnage
-- GitHub Projects pour la gestion du product backlog
+- GitHub Projects pour la gestion du product backlog (https://github.com/users/SomraniAsma/projects/5/views/2)
 
 ## Notes
 - Je n'ai pas opté pour un nanGraph puisque le projet contient seulement deux interfaces.
